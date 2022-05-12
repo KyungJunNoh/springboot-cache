@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+         updateCheck="false">
+    <diskStore path="java.io.tmpdir" />
+
+    <!--
+    findMemberCache 라는 이름을 가진 메서드에서 사용이되며,
+    로컬의 힙 영역에는 10000개의 객체를 저장할 수 있고 로컬의 디스크에는 1000개의 객체를 저장할 수 있다
+    eternal 이 false 가 됨으로써 캐시를 초기화시켜주지 않으면 안의 값들은 삭제되지 않는다.
+    300초동안 조회되지 않으면 해당 캐시는 삭제가 되며 캐시는 600초동안 존재할 수 있다.
+    maxElementsInMemory 에 도달했을때, LFU 방식으로 메모리에서 객체를 삭제한다.
+    -->
+    <cache name="findMemberCache"
+           maxEntriesLocalHeap="10000"
+           maxEntriesLocalDisk="1000"
+           eternal="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="600"
+           memoryStoreEvictionPolicy="LFU">
+        <persistence strategy="localTempSwap" />
+    </cache>
+
+</ehcache>
