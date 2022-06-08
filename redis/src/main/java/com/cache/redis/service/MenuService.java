@@ -15,25 +15,7 @@ public class MenuService {
 
     private final MenuRepository menuRepository;
 
-    public void init(){
-        menuRepository.save(
-                new Menu("BULGOGI_PIZZA","PIZZA")
-        );
-        menuRepository.save(
-                new Menu("CHEESE_PIZZA","PIZZA")
-        );
-        menuRepository.save(
-                new Menu("POTATO_PIZZA","PIZZA")
-        );
-        menuRepository.save(
-                new Menu("GARLIC_CHICKEN","CHICKEN")
-        );
-        menuRepository.save(
-                new Menu("FRIED_CHICKEN","CHICKEN")
-        );
-    }
-
-    @Cacheable("menu")
+    @Cacheable(value = "menu")
     public List<Menu> getAllMenu() {
         return menuRepository.findAll();
     }
