@@ -1,6 +1,6 @@
 package com.cache.redis.entity;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,16 +11,17 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Menu {
 
     @Id @GeneratedValue
     private Long id;
 
     private String menuName;
-    private String PART_Name;
+    private String partName;
 
-    public Menu(String menuName, String PART_Name) {
+    public Menu(String menuName, String partName) {
         this.menuName = menuName;
-        this.PART_Name = PART_Name;
+        this.partName = partName;
     }
 }
