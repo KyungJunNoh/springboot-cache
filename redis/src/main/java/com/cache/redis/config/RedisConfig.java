@@ -45,13 +45,13 @@ public class RedisConfig {
      */
     @Bean
     public CacheManager redisCacheManager() {
-        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
+        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig() // RedisCache 를 사용할때 설정
+                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer())) // 클래스를 String(문자열) 으로 만들기위해 StringRedisSerializer 를 사용
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer())); // json 을 직렬화 하기위해 GenericJackson2JsonRedisSerializer 를 사용
 
         RedisCacheManager redisCacheManager = RedisCacheManager.RedisCacheManagerBuilder
                 .fromConnectionFactory(connectionFactory)
-                .cacheDefaults(redisCacheConfiguration)
+                .cacheDefaults(redisCacheConfiguration) // 동적으로 생성된 Redis 설정(Redis Custom 설정)을 주입
                 .build();
 
         return redisCacheManager;
