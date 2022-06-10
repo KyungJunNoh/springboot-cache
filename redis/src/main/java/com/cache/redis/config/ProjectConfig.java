@@ -13,6 +13,9 @@ public class ProjectConfig {
 
     private final MenuRepository menuRepository;
 
+    /**
+     * 프로젝트를 실행할때 메뉴들을 세팅
+     */
     @PostConstruct
     public void menuConfig(){
         menuRepository.save(
