@@ -39,7 +39,7 @@ public class EhcacheApplication {
 	}
 
 	/**
-	 * 캐시를 사용했을때 않았을때 멤버를 조회
+	 * 캐시를 사용했을때 멤버를 조회
 	 * @param name
 	 * @return member;
 	 */
